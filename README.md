@@ -179,16 +179,15 @@ Quick options:
 
 ## 📄 License
 
-This game is open-source and free to use, modify, and distribute.
+This game is open-source to look to verify integrity and  is not free to use, modify, and or distribute.
 
 ## 🙏 Credits
-
-Built with:
-- Vanilla HTML5
-- Pure CSS3
+Made with love by Damon Mayberry <3
+Built with - Vanilla HTML5 - Pure CSS3
 - No external dependencies
-- Inspired by GTA V's stock market mechanics
+- Inspired by GTA V's stock market
 
 ---
 
-**Enjoy trading! May your portfolio grow! 📈💰**
+
+**Enjoy trading!
