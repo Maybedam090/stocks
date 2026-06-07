@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Trading Game - GTA Style</title>
+    <link rel="stylesheet" href="stocks.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Top Navigation Bar -->
+        <div class="top-nav">
+            <div class="nav-left">
+                <h1 class="game-title">📈 STOCK MARKET TRADER</h1>
+            </div>
+            <div class="nav-stats">
+                <div class="nav-stat">
+                    <span class="nav-label">Cash:</span>
+                    <span class="nav-value" id="nav-cash">$5,000</span>
+                </div>
+                <div class="nav-stat">
+                    <span class="nav-label">Assets:</span>
+                    <span class="nav-value" id="nav-assets">$5,000</span>
+                </div>
+                <div class="nav-stat">
+                    <span class="nav-label">Day:</span>
+                    <span class="nav-value" id="nav-day">1</span>
+                </div>
+            </div>
+            <div class="nav-right">
+                <button id="quick-next-day" class="btn btn-next-day btn-compact">NEXT DAY</button>
+                <button id="toggle-sidebar" class="btn btn-compact" style="background: rgba(0, 212, 255, 0.2); margin-left: 10px;">☰</button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Sidebar -->
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar-section">
+                    <div class="sidebar-title">QUICK STATS</div>
+                    <div class="sidebar-stat">
+                        <span>Cash Available</span>
+                        <span id="sidebar-cash" style="color: #00ff88;">$5,000</span>
+                    </div>
+                    <div class="sidebar-stat">
+                        <span>Portfolio Value</span>
+                        <span id="sidebar-portfolio">$0</span>
+                    </div>
+                    <div class="sidebar-stat">
+                        <span>Total Assets</span>
+                        <span id="sidebar-total">$5,000</span>
+                    </div>
+                    <div class="sidebar-stat">
+                        <span>Active Loan</span>
+                        <span id="sidebar-loan" style="color: #00ff88;">None</span>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-title">QUICK ACTIONS</div>
+                    <button id="loan-btn" class="sidebar-btn">💰 GET LOAN</button>
+                    <button id="repay-btn" class="sidebar-btn">💳 REPAY LOAN</button>
+                    <button id="sell-all-btn" class="sidebar-btn">⚡ SELL ALL</button>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-title">MARKET STATS</div>
+                    <div id="sidebar-stats" style="font-size: 12px; color: #aaa;"></div>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-title">OBJECTIVES</div>
+                    <div class="objective-item">📈 Buy LOW</div>
+                    <div class="objective-item">📉 Sell HIGH</div>
+                    <div class="objective-item">💰 Build wealth</div>
+                    <div class="objective-item">📊 Diversify</div>
+                </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Search & Filter -->
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search stocks..." class="search-input">
+                    <select id="sector-filter" class="sector-select">
+                        <option value="">All Sectors</option>
+                        <option value="Media">Media</option>
+                        <option value="Entertainment">Entertainment</option>
+                        <option value="Finance">Finance</option>
+                        <option value="Banking">Banking</option>
+                        <option value="Tech">Tech</option>
+                        <option value="Healthcare">Healthcare</option>
+                        <option value="Retail">Retail</option>
+                        <option value="Construction">Construction</option>
+                        <option value="Real Estate">Real Estate</option>
+                        <option value="Food & Beverage">Food & Beverage</option>
+                        <option value="Agriculture">Agriculture</option>
+                        <option value="Automotive">Automotive</option>
+                        <option value="Energy">Energy</option>
+                        <option value="Transportation">Transportation</option>
+                        <option value="Tourism">Tourism</option>
+                    </select>
+                </div>
+
+                <!-- Stocks Grid -->
+                <div class="stocks-container">
+                    <div class="stocks-grid" id="stocks-grid">
+                        <!-- Stocks will be generated here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel -->
+            <div class="right-panel">
+                <!-- Trade Panel -->
+                <div class="panel-section">
+                    <div class="panel-title">TRADE</div>
+                    <div class="trade-form">
+                        <div class="form-group">
+                            <label>Stock</label>
+                            <select id="company-select" class="form-input">
+                                <option value="">-- Select Stock --</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Quantity</label>
+                            <input type="number" id="quantity" min="1" value="1" class="form-input">
+                        </div>
+
+                        <div class="form-info">
+                            <div class="info-row">
+                                <span>Price:</span>
+                                <span id="selected-price">-</span>
+                            </div>
+                            <div class="info-row">
+                                <span>Total:</span>
+                                <span id="trade-total">$0</span>
+                            </div>
+                        </div>
+
+                        <div class="button-group">
+                            <button id="buy-btn" class="btn btn-buy btn-block">BUY</button>
+                            <button id="sell-btn" class="btn btn-sell btn-block">SELL</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Holdings -->
+                <div class="panel-section">
+                    <div class="panel-title">YOUR HOLDINGS</div>
+                    <div class="holdings-list" id="holdings-list">
+                        <div class="empty-state">No holdings yet</div>
+                    </div>
+                </div>
+
+                <!-- Recent Transactions -->
+                <div class="panel-section">
+                    <div class="panel-title">RECENT ACTIVITY</div>
+                    <div class="transaction-log" id="transaction-log">
+                        <div class="log-entry">Game started</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stock Detail Modal -->
+    <div class="modal" id="stock-modal" style="display: none;">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">✕</button>
+            
+            <div class="modal-header">
+                <div>
+                    <h2 id="modal-symbol">STOCK</h2>
+                    <p id="modal-name">Company Name</p>
+                </div>
+                <div class="modal-price-box">
+                    <div class="modal-price" id="modal-price">$0.00</div>
+                    <div class="modal-change" id="modal-change">0%</div>
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <!-- Chart -->
+                <div class="chart-container">
+                    <canvas id="price-chart"></canvas>
+                </div>
+
+                <!-- Price Stats -->
+                <div class="price-stats">
+                    <div class="stat-row">
+                        <span>30 Day High:</span>
+                        <span id="stat-high">-</span>
+                    </div>
+                    <div class="stat-row">
+                        <span>30 Day Low:</span>
+                        <span id="stat-low">-</span>
+                    </div>
+                    <div class="stat-row">
+                        <span>Average Price:</span>
+                        <span id="stat-avg">-</span>
+                    </div>
+                    <div class="stat-row">
+                        <span>Volatility:</span>
+                        <span id="stat-vol">-</span>
+                    </div>
+                    <div class="stat-row">
+                        <span>Dividend Yield:</span>
+                        <span id="stat-div">-</span>
+                    </div>
+                </div>
+
+                <!-- Analysis -->
+                <div class="analysis-section">
+                    <h3>Technical Analysis</h3>
+                    <div class="analysis-box">
+                        <div class="analysis-item">
+                            <span>Trend:</span>
+                            <span id="analysis-trend" class="analysis-badge">-</span>
+                        </div>
+                        <div class="analysis-item">
+                            <span>Price Position:</span>
+                            <span id="analysis-position" class="analysis-badge">-</span>
+                        </div>
+                        <div class="analysis-item">
+                            <span>Momentum:</span>
+                            <span id="analysis-momentum" class="analysis-badge">-</span>
+                        </div>
+                        <div class="analysis-item">
+                            <span>Recommendation:</span>
+                            <span id="analysis-recommendation" class="analysis-badge recommendation">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Trade -->
+                <div class="quick-trade">
+                    <div class="quick-input">
+                        <label>Quick Buy:</label>
+                        <input type="number" id="quick-quantity" min="1" value="1" class="form-input">
+                    </div>
+                    <button class="btn btn-buy btn-block" id="quick-buy-btn">BUY NOW</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="stocks.js"></script>
+</body>
+</html>

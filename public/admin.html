@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Admin Panel</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="tutorial.html">Tutorial</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="status-card">
+        <h2>Admin dashboard</h2>
+        <div id="admin-state">
+          <p>Loading admin data...</p>
+        </div>
+      </section>
+
+      <section>
+        <input id="admin-search" placeholder="Search users by name or email" style="width:100%;padding:10px;margin-bottom:12px;border-radius:8px;border:1px solid #cbd5e1;" />
+        <div id="users-list"></div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

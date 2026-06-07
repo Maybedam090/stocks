@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stock Trade Game</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Stock Trade Game</h1>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="tutorial.html">Tutorial</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h2>Build your portfolio with simulated stock trades</h2>
+        <p>Sign up or log in with your email, username, and password to save your progress.</p>
+        <div id="auth-actions" class="auth-forms">
+          <div class="auth-card">
+            <h3>Login</h3>
+            <form id="login-form">
+              <label>Email<input type="email" name="email" required /></label>
+              <label>Password<input type="password" name="password" required /></label>
+              <button class="button" type="submit">Login</button>
+            </form>
+          </div>
+          <div class="auth-card">
+            <h3>Sign up</h3>
+            <form id="signup-form">
+              <label>Username<input name="username" required /></label>
+              <label>Email<input type="email" name="email" required /></label>
+              <label>Password<input type="password" name="password" required /></label>
+              <button class="button secondary" type="submit">Sign up</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="status-card">
+        <h3>Your progress</h3>
+        <div id="progress-state">
+          <p>Loading user data...</p>
+        </div>
+      </section>
+
+      <section class="game-tools">
+        <h3>Quick actions</h3>
+        <button id="simulate-trade" class="button">Simulate trade</button>
+        <button id="save-progress" class="button secondary">Save progress</button>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
